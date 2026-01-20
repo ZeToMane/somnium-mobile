@@ -2,16 +2,42 @@ import BorderButton from "@components/icons/BorderButton";
 import global from "@styles/global";
 import theme from "@theme";
 import { Pressable, StyleSheet, Text } from "react-native";
+import { useScenePoint } from "@/context/ScenePoints";
+import { Href, useRouter } from "expo-router";
 
 interface ButtonProps {
     text?: string;
-    callback?: () => void;
+    navigateTo?: string;
+    incrementPoints?: number;
+    customCallback?: () => void;
 }
 
-export function Button({ text = "CONTINUER", callback }: ButtonProps) {
+export function Button({
+    text = "CONTINUER",
+    navigateTo,
+    incrementPoints,
+    customCallback,
+}: ButtonProps) {
+    const router = useRouter();
+
+    const { increment } = useScenePoint();
+
+    const handlePress = () => {
+        if (incrementPoints) {
+            increment(incrementPoints);
+        }
+
+        if (customCallback) {
+            customCallback();
+        }
+
+        if (navigateTo) {
+            router.push(navigateTo as Href);
+        }
+    };
     return (
         <Pressable
-            onPress={callback}
+            onPress={handlePress}
             style={({ pressed }) => [
                 styles.container,
                 pressed && styles.containerPressed,

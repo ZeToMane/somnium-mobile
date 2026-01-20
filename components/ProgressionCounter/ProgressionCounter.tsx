@@ -2,16 +2,18 @@ import global from "@styles/global";
 import theme from "@theme";
 import { StyleSheet, Text, View } from "react-native";
 
-interface StepCounterProps {
-    step: number;
+interface ProgressionCounterProps {
+    progression: number;
 }
 
-export function StepCounter({ step = 0 }: StepCounterProps) {
+export function ProgressionCounter({
+    progression = 0,
+}: ProgressionCounterProps) {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <Text style={[global.note, { color: theme.colors.background }]}>
-                    QUESTION {step}
+                    QUESTION {progression}
                 </Text>
             </View>
         </View>

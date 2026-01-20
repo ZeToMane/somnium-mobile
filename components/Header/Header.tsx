@@ -6,7 +6,11 @@ import { BatteryId } from "./BatteryId";
 import { Desc } from "./Desc";
 import { Title } from "./Title";
 
-export function Header() {
+interface HeaderProps {
+    steps?: number;
+}
+
+export function Header({ steps = 0 }: HeaderProps) {
     return (
         <>
             <BatteryId />
@@ -17,7 +21,7 @@ export function Header() {
                 </View>
                 <View style={styles.contentRight}>
                     <BorderView thickness={1} />
-                    <Steps steps={1} />
+                    <Steps steps={steps} />
                 </View>
             </View>
         </>

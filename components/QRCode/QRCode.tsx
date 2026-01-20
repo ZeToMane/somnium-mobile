@@ -1,3 +1,4 @@
+import BorderView from "@components/icons/BorderView";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import { Image } from "expo-image";
 import { useRef, useState } from "react";
@@ -6,7 +7,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import global from "@styles/global";
 import theme from "@theme";
 
-export function Camera() {
+export function QRCode() {
     const [permission, requestPermission] = useCameraPermissions();
     const cameraRef = useRef<CameraView>(null);
     const [uri, setUri] = useState<string | null>(null);
@@ -41,7 +42,7 @@ export function Camera() {
                 <Image
                     source={{ uri }}
                     contentFit="contain"
-                    style={{ aspectRatio: 1 }}
+                    style={{ width: 300, aspectRatio: 1 }}
                 />
                 <Button
                     onPress={() => setUri(null)}
@@ -54,6 +55,12 @@ export function Camera() {
     const renderCamera = () => {
         return (
             <View style={styles.container}>
+                <BorderView
+                    thickness={2}
+                    cornerLength={40}
+                    extra={true}
+                    color={theme.colors.focus}
+                />
                 <CameraView
                     style={styles.camera}
                     ref={cameraRef}
@@ -76,6 +83,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: "100%",
+        padding: 10,
     },
     containerModal: {
         position: "absolute",
@@ -91,5 +99,6 @@ const styles = StyleSheet.create({
     },
     camera: {
         flex: 1,
+        zIndex: 0,
     },
 });

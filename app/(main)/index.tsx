@@ -1,39 +1,44 @@
-import { Content } from "@/components/Content";
 import { Camera } from "@/components/Camera";
 import { Header } from "@/components/Header";
 import { Status } from "@/components/Status";
-import { StepCounter } from "@/components/StepCounter";
-import { Button } from "@components/Button";
-import global from "@styles/global";
+import { Username } from "@/components/Username";
+import { ProgressionCounter } from "@/components/ProgressionCounter";
+import Barcode from "@/components/icons/Barcode";
 import theme from "@theme";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Button } from "@/components/Button";
+import { useScenePoint } from "@/context/ScenePoints";
 
 export default function Index() {
+    const { increment } = useScenePoint();
     return (
         <View
             style={{
                 flex: 1,
-                justifyContent: "center",
+                /* justifyContent: "center",
                 alignItems: "center",
-                flexDirection: "column",
+                flexDirection: "column", */
             }}
         >
             <Header />
             <Status />
-            <StepCounter step={1} />
-            <Content
+            <ProgressionCounter progression={1} />
+            {/* <Content
                 title={"Lorem Ipsum Morbi non sollicitudin"}
                 desc={
                     "Morbi non sollicitudin est, eu commodo diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos"
                 }
             />
-            <Button />
+            <Button /> */}
             <View style={{ width: "100%", flex: 0.7 }}>
                 <Camera />
             </View>
-            <Text style={[styles.text, global.title, { flex: 0.3 }]}>
+            <Barcode style={{ width: "100%" }} />
+            {/* <Username /> */}
+            <Button navigateTo="Test" />
+            {/* <Text style={[styles.text, global.title, { flex: 0.3 }]}>
                 Edit app/index.tsx to edit this screen.
-            </Text>
+            </Text> */}
         </View>
     );
 }

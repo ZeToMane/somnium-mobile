@@ -7,7 +7,8 @@
             "@fonts/*": ["./assets/fonts/*"],
             "@theme": ["./constants/theme.ts"],
             "@styles/*": ["./styles/*"],
-            "@components/*": ["./components/*"]
+            "@components/*": ["./components/*"],
+            "@context/*": ["./context/*"]
         }
     },
     "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
