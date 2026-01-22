@@ -35,7 +35,7 @@ export default function Index() {
             </View>
             <Barcode style={{ width: "100%" }} />
             {/* <Username /> */}
-            <Button navigateTo="Test" />
+            <Button navigateTo="Orbits" />
             {/* <Text style={[styles.text, global.title, { flex: 0.3 }]}>
                 Edit app/index.tsx to edit this screen.
             </Text> */}

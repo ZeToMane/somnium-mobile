@@ -5,6 +5,7 @@
         "paths": {
             "@/*": ["./*"],
             "@fonts/*": ["./assets/fonts/*"],
+            "@assets/*": ["./assets/*"],
             "@theme": ["./constants/theme.ts"],
             "@styles/*": ["./styles/*"],
             "@components/*": ["./components/*"],

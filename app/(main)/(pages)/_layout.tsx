@@ -31,10 +31,9 @@ export default function MainLayout() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        /* justifyContent: "center",
-        alignItems: "center", */
         flexDirection: "column",
         width: "100%",
         boxSizing: "border-box",
+        gap: theme.spacing.md,
     },
 });

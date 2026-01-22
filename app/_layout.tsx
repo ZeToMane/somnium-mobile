@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ProgressionProvider } from "@context/Progression";
 import { ScenePointsProvider } from "@context/ScenePoints";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -25,22 +26,24 @@ export default function RootLayout() {
     }
 
     return (
-        <SafeAreaView
-            style={{ flex: 1, backgroundColor: theme.colors.background }}
-        >
-            <ProgressionProvider>
-                <ScenePointsProvider>
-                    <Stack
-                        screenOptions={{
-                            headerShown: false,
-                            animation: "none",
-                            contentStyle: {
-                                backgroundColor: theme.colors.background,
-                            },
-                        }}
-                    />
-                </ScenePointsProvider>
-            </ProgressionProvider>
-        </SafeAreaView>
+        <GestureHandlerRootView>
+            <SafeAreaView
+                style={{ flex: 1, backgroundColor: theme.colors.background }}
+            >
+                <ProgressionProvider>
+                    <ScenePointsProvider>
+                        <Stack
+                            screenOptions={{
+                                headerShown: false,
+                                animation: "none",
+                                contentStyle: {
+                                    backgroundColor: theme.colors.background,
+                                },
+                            }}
+                        />
+                    </ScenePointsProvider>
+                </ProgressionProvider>
+            </SafeAreaView>
+        </GestureHandlerRootView>
     );
 }
