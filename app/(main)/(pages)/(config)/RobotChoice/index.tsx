@@ -37,7 +37,10 @@ export default function RobotChoice() {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
-                <Content title="CHOISIS" />
+                <Content
+                    title="ES-TU UN ROBOT ?"
+                    desc={"CHOISIS LES ESCALIERS"}
+                />
                 <View style={styles.gridContainer}>
                     {robotItems.map((item, index) => {
                         const isSelected = selectedRobot === index;

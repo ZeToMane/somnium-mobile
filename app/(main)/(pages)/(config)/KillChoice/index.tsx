@@ -68,7 +68,7 @@ export default function KillChoice() {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
-                <Content title="CHOISIS" />
+                <Content title="TUES" />
                 <View style={styles.killContainer}>
                     {killList.map((kill, index) => {
                         const isSelected = selectedKill === index;

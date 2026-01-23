@@ -5,6 +5,7 @@ import { Button } from "@components/Button";
 import theme from "@theme";
 import global from "@styles/global";
 import { useProgression } from "@/context/Progression";
+import { Content } from "@/components/Content";
 
 const wordList = [
     { name: "sommeil", group: 1 },
@@ -19,12 +20,8 @@ const wordList = [
     { name: "patate", group: 2 },
     { name: "robot", group: 1 },
     { name: "lumière", group: 2 },
-    { name: "route", group: 1 },
     { name: "croissant", group: 2 },
     { name: "code", group: 1 },
-    { name: "papier", group: 2 },
-    { name: "illusion", group: 1 },
-    { name: "cactus", group: 2 },
     { name: "comic sans", group: 1 },
     { name: "forêt", group: 2 },
 ];
@@ -72,6 +69,7 @@ export default function WordChoice() {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
+                <Content title="CHOISIS" />
                 <View style={styles.gridContainer}>
                     {wordPairs.map((pair, pairIndex) => (
                         <View key={pairIndex} style={styles.rowContainer}>

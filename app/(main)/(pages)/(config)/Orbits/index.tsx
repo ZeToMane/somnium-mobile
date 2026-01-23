@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, TouchableOpacity, Pressable } from "react-native";
-import { Image } from "expo-image";
+import { View, StyleSheet, Pressable } from "react-native";
 
 import { Content } from "@components/Content";
 import Orbit from "@components/icons/Orbit";
@@ -38,7 +37,10 @@ export default function Alone() {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
-                <Content title="CHOISIS" />
+                <Content
+                    title="CHOISIS"
+                    desc="QUELLE FORME RETIENT TON ATTENTION ?"
+                />
                 <View style={styles.gridContainer}>
                     {orbitItems.map((item, index) => {
                         const isSelected = selectedOrbit === index;

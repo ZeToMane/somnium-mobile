@@ -54,7 +54,10 @@ export default function ThingsChoice() {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
-                <Content title="CHOISIS" />
+                <Content
+                    title="CHOISIS"
+                    desc={"QUELLE PHOTO RETIENT TON ATTENTION ?"}
+                />
                 <View style={styles.thingsContainer}>
                     {thingsList.map((thing, index) => {
                         const isSelected = selectedThings === index;

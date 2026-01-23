@@ -52,7 +52,7 @@ export default function See() {
     return (
         <View style={styles.main}>
             <View style={styles.container}>
-                <Content title="TU TE SENS SEUL.E ?" />
+                <Content title="QUE VOIS-TU ?" />
                 <RNImage source={require("@assets/images/project/psy.png")} />
                 <Image
                     source={require("@assets/images/project/bars.svg")}
