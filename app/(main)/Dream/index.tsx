@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 import { Content } from "@components/Content";
 import { center } from "@shopify/react-native-skia";
 
-export default function Index() {
+export default function Dream() {
     return (
         <View style={styles.container}>
             <View style={styles.content}>

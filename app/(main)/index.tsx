@@ -11,7 +11,7 @@ import { QRCode } from "@/components/QRCode";
 import { LottieIntro } from "@/components/Anims/LottieIntro";
 import { useRouter, Href } from "expo-router";
 
-const path = "Matrix";
+const path = "Story";
 
 export default function Index() {
     const router = useRouter();

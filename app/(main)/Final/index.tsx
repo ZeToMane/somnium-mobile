@@ -14,7 +14,7 @@ import { Content } from "@components/Content";
 
 const path = "Dream";
 
-export default function Index() {
+export default function Final() {
     const router = useRouter();
 
     const handleAnimationFinish = () => {
