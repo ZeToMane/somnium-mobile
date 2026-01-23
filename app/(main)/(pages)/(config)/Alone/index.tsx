@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { Image } from "expo-image";
 
@@ -8,14 +9,20 @@ import { Slider } from "./Slider";
 
 import theme from "@theme";
 import { useSharedValue, useAnimatedReaction } from "react-native-reanimated";
-import { useRef } from "react";
+
+import { useProgression } from "@/context/Progression";
 
 const nav = ["Final"];
 
 export default function Alone() {
+    const { setStep } = useProgression();
     const progress = useSharedValue(0);
     const navIndex = useRef<number | null>(null);
     const sceneToValue = useRef<string | undefined>(undefined);
+
+    useEffect(() => {
+        setStep(7);
+    }, [setStep]);
 
     useAnimatedReaction(
         () => progress.value,

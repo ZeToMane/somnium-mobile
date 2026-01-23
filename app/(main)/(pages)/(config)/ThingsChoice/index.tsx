@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 
 import { Content } from "@components/Content";
@@ -6,6 +6,7 @@ import { Button } from "@components/Button";
 import Things from "@components/icons/Things";
 
 import theme from "@theme";
+import { useProgression } from "@/context/Progression";
 
 const nav = ["Final"];
 
@@ -28,9 +29,14 @@ const thingsList = [
 }));
 
 export default function ThingsChoice() {
+    const { setStep } = useProgression();
     const [selectedThings, setSelectedThings] = useState<number | null>(null);
     const navIndex = useRef<number | null>(null);
     const sceneToValue = useRef<string | undefined>(undefined);
+
+    useEffect(() => {
+        setStep(6);
+    }, [setStep]);
 
     const handleSelection = (index: number, name: string) => {
         setSelectedThings(index);

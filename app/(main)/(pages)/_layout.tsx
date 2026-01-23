@@ -11,18 +11,18 @@ import { useProgression } from "@/context/Progression";
 import { useEffect } from "react";
 
 export default function MainLayout() {
-    const { step, progression, setStep, incrementProgression } =
-        useProgression();
+    const { step, progression, incrementProgression } = useProgression();
 
     useEffect(() => {
-        setStep(3);
-        incrementProgression();
-    }, [incrementProgression, setStep]);
+        if (step >= 4) {
+            incrementProgression();
+        }
+    }, [incrementProgression, step]);
 
     return (
         <View style={styles.container}>
             <Header steps={step} />
-            <ProgressionCounter progression={progression} />
+            {step >= 4 && <ProgressionCounter progression={progression} />}
             <Slot />
         </View>
     );

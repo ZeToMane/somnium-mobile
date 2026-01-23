@@ -13,10 +13,10 @@ const ProgressionContext = createContext<ProgressionContextValue | undefined>(
 
 export function ProgressionProvider({ children }: PropsWithChildren) {
     const [step, setStep] = useState<number>(0);
-    const [progression, setprogression] = useState<number>(1);
+    const [progression, setProgression] = useState<number>(0);
 
     const incrementProgression = () => {
-        setprogression((prev) => prev + 1);
+        setProgression((prev) => prev + 1);
     };
 
     return (

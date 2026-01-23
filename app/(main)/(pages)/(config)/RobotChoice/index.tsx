@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 import { Image } from "expo-image";
 
@@ -7,15 +7,20 @@ import { Button } from "@components/Button";
 import Robot from "@components/icons/Robot";
 
 import theme from "@theme";
+import { useProgression } from "@/context/Progression";
 
 const nav = ["KillChoice", "Final"];
 
 export default function RobotChoice() {
-    // Create an array of 9 items (3x3 grid as shown in your screenshot)
+    const { setStep } = useProgression();
     const robotItems = Array.from({ length: 9 }, (_, i) => i);
     const [selectedRobot, setSelectedRobot] = useState<number | null>(null);
     const navIndex = useRef<number | null>(null);
     const sceneToValue = useRef<string | undefined>(undefined);
+
+    useEffect(() => {
+        setStep(5);
+    }, [setStep]);
 
     const handleRobotSelection = (index: number) => {
         setSelectedRobot(index);

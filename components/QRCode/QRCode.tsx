@@ -6,13 +6,21 @@ import {
 import io, { Socket } from "socket.io-client";
 import { useRef, useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { Href, useRouter } from "expo-router";
+
+import BorderView from "@components/icons/BorderView";
 
 import { useSocket } from "@/context/Socket";
 
 import global from "@styles/global";
 import theme from "@theme";
 
-export function QRCode() {
+interface QRCodeProps {
+    nextPage: string;
+}
+
+export function QRCode({ nextPage }: QRCodeProps) {
+    const router = useRouter();
     const [permission, requestPermission] = useCameraPermissions();
 
     /* const socket = useRef<Socket | null>(null); */
@@ -36,6 +44,7 @@ export function QRCode() {
             /* socket.current?.emit("message-from-mobile", {
                 text: "TIQUETONERAT",
             }); */
+            router.push(nextPage as Href);
         });
     };
 
@@ -78,6 +87,12 @@ export function QRCode() {
     const renderCamera = () => {
         return (
             <View style={styles.container}>
+                <BorderView
+                    thickness={2}
+                    cornerLength={40}
+                    extra={true}
+                    color={theme.colors.focus}
+                />
                 <CameraView
                     style={styles.camera}
                     ref={cameraRef}
@@ -100,6 +115,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: "100%",
+        padding: 10,
     },
     containerModal: {
         position: "absolute",

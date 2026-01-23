@@ -1,9 +1,10 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Button } from "@components/Button";
 
 import theme from "@theme";
 import global from "@styles/global";
+import { useProgression } from "@/context/Progression";
 
 const wordList = [
     { name: "sommeil", group: 1 },
@@ -31,8 +32,13 @@ const wordList = [
 const nav = ["Orbits", "ThingsChoice"];
 
 export default function WordChoice() {
+    const { setStep } = useProgression();
     const [selectedWord, setSelectedWord] = useState<string | null>(null);
     const navIndex = useRef<number | null>(null);
+
+    useEffect(() => {
+        setStep(5);
+    }, [setStep]);
 
     // Generate random offsets for each word pair
     const wordPairs = useMemo(() => {

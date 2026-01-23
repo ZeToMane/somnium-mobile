@@ -8,16 +8,17 @@ import { Title } from "./Title";
 
 interface HeaderProps {
     steps?: number;
+    desc?: boolean;
 }
 
-export function Header({ steps = 0 }: HeaderProps) {
+export function Header({ steps = 0, desc = true }: HeaderProps) {
     return (
         <View style={{}}>
             <BatteryId />
             <View style={styles.container}>
                 <View style={styles.contentLeft}>
                     <Title />
-                    <Desc />
+                    {desc && <Desc />}
                 </View>
                 <View style={styles.contentRight}>
                     <BorderView thickness={1} />

@@ -30,7 +30,6 @@ export function Username() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         width: "100%",
         justifyContent: "center",
         alignItems: "flex-start",

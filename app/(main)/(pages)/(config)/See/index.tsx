@@ -11,6 +11,8 @@ import { Image } from "expo-image";
 import { Content } from "@components/Content";
 import { Button } from "@components/Button";
 
+import { useProgression } from "@/context/Progression";
+
 import theme from "@theme";
 import global from "@styles/global";
 
@@ -21,8 +23,13 @@ const choices = ["fleur", "araignée", "explosion", "robot"];
 const nav = ["", "WordChoice", "RobotChoice"];
 
 export default function See() {
+    const { setStep } = useProgression();
     const [selectedWord, setSelectedWord] = useState<string | null>(null);
     const navIndex = useRef(0);
+
+    useEffect(() => {
+        setStep(4);
+    }, [setStep]);
 
     const handleWordSelection = (choice: string) => {
         setSelectedWord(choice);

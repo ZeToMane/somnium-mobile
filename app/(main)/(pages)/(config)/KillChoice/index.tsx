@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { View, StyleSheet, Pressable } from "react-native";
 import { Image } from "expo-image";
 
@@ -7,6 +7,7 @@ import { Button } from "@components/Button";
 import Kill from "@components/icons/Kill";
 
 import theme from "@theme";
+import { useProgression } from "@/context/Progression";
 
 // Simple seeded random function
 const seededRandom = (seed: number) => {
@@ -35,9 +36,14 @@ const killList = [
 const nav = ["Alone", "Final"];
 
 export default function KillChoice() {
+    const { setStep } = useProgression();
     const [selectedKill, setSelectedKill] = useState<number | null>(null);
     const navIndex = useRef<number | null>(null);
     const sceneToValue = useRef<string | undefined>(undefined);
+
+    useEffect(() => {
+        setStep(6);
+    }, [setStep]);
 
     const handleKillSelection = (index: number) => {
         setSelectedKill(index);

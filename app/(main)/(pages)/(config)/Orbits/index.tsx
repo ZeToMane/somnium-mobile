@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, Pressable } from "react-native";
 import { Image } from "expo-image";
 
@@ -7,15 +7,20 @@ import Orbit from "@components/icons/Orbit";
 import { Button } from "@components/Button";
 
 import theme from "@theme";
+import { useProgression } from "@/context/Progression";
 
 const nav = ["Final"];
 
 export default function Alone() {
-    // Create an array of 9 items (3x3 grid as shown in your screenshot)
+    const { setStep } = useProgression();
     const orbitItems = Array.from({ length: 9 }, (_, i) => i);
     const [selectedOrbit, setSelectedOrbit] = useState<number | null>(null);
     const navIndex = useRef<number | null>(null);
     const sceneToValue = useRef<string | undefined>(undefined);
+
+    useEffect(() => {
+        setStep(6);
+    }, [setStep]);
 
     const handleSelection = (index: number) => {
         setSelectedOrbit(index);
