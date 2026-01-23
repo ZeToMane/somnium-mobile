@@ -28,7 +28,7 @@ export default function Story() {
                     }
                 />
             </View>
-            <Button navigateTo="Profile" />
+            <Button navigateTo="QR" />
         </View>
     );
 }

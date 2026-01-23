@@ -17,7 +17,7 @@ export default function QR() {
     const { step, setStep } = useProgression();
 
     useEffect(() => {
-        setStep(0);
+        setStep(2);
     }, [setStep]);
 
     return (
@@ -26,11 +26,11 @@ export default function QR() {
             <Content
                 title={"SCANNEZ VOTRE CODE UTILISATEUR"}
                 desc={
-                    "L’IDENTIFIANT QUE L’AGENT VOUS A DÉLIVRÉ POUR VOUS CONNECTER"
+                    "L'IDENTIFIANT QUE L'AGENT VOUS A DÉLIVRÉ POUR VOUS CONNECTER"
                 }
             />
             <View style={{ width: "100%", flex: 1 }}>
-                <QRCode nextPage="Story" />
+                <QRCode nextPage="Profile" />
             </View>
             <Barcode />
         </View>

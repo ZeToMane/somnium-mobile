@@ -10,7 +10,7 @@ export default function Dream() {
             <View style={styles.content}>
                 <Content title={"VOTRE TEMPS DE RÊVE EST ÉCOULÉ"} />
             </View>
-            <Button text={"SE RÉVEILLER"} navigateTo="QR" />
+            <Button text={"SE RÉVEILLER"} navigateTo="/" />
         </View>
     );
 }

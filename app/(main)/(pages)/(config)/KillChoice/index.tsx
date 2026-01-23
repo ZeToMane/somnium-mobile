@@ -51,6 +51,9 @@ export default function KillChoice() {
 
         switch (killName) {
             case "rat":
+                navIndex.current = 1; // Final
+                sceneToValue.current = "TIQUETONERAT";
+                break;
             case "firefly":
                 navIndex.current = 1; // Final
                 sceneToValue.current = "TIQUETONERAT";

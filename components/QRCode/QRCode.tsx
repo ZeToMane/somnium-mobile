@@ -33,20 +33,40 @@ export function QRCode({ nextPage }: QRCodeProps) {
      * Camera QR code scanning handler
      */
     const handleScan = (result: BarcodeScanningResult) => {
-        const sessionId = result.data;
-        console.log("QR détecté :", sessionId);
+        try {
+            console.log("📷 QR détecté :", result.data);
 
-        socket.current = io(sessionId); // IP DU SERVEUR
+            // 1️⃣ Parser l’URL du QR code
+            const scannedUrl = new URL(result.data);
+            const sessionId = scannedUrl.searchParams.get("session");
 
-        socket.current.on("connect", () => {
-            console.log("✅ Mobile connecté");
-            socket.current?.emit("join-session", sessionId);
-            /* socket.current?.emit("message-from-mobile", {
-                text: "TIQUETONERAT",
-            }); */
-            router.push(nextPage as Href);
-        });
+            if (!sessionId) {
+                console.error("❌ Aucun sessionId trouvé dans le QR code");
+                return;
+            }
+
+            console.log("🔑 Session ID :", sessionId);
+
+            // 2️⃣ Connexion au serveur (PAS à la session)
+            socket.current = io(scannedUrl.origin);
+
+            socket.current.on("connect", () => {
+                console.log("✅ Mobile connecté au serveur");
+
+                // 3️⃣ Rejoindre la session
+                socket.current?.emit("join-session", sessionId);
+
+                // ❌ NE PAS émettre "connexion-done" ici
+                // → c’est le serveur qui notifie le web
+
+                router.push(nextPage as Href);
+            });
+
+        } catch (err) {
+            console.error("❌ QR code invalide :", err);
+        }
     };
+
 
     const sendMessage = () => {
         console.log("Envoi du message au serveur...");

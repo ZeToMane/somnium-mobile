@@ -15,7 +15,7 @@ export default function Profile() {
     const { setStep } = useProgression();
 
     useEffect(() => {
-        setStep(2);
+        setStep(3);
     }, [setStep]);
 
     return (
