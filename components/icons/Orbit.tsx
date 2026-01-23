@@ -38,7 +38,7 @@ export default function Orbital({
         const minRadius = 10; // minimum orbit radius
 
         // Determine number of orbits (2-5 if not specified)
-        const orbitsCount = numOrbits ?? Math.floor(rng() * 4) + 2;
+        const orbitsCount = numOrbits ?? Math.floor(rng() * 20) + 2;
 
         let orbits: number[];
 

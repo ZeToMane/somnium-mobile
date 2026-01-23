@@ -2,7 +2,6 @@ import theme from "@theme";
 import { View } from "react-native";
 import type { ViewProps } from "react-native";
 import { Image } from "expo-image";
-import BorderView from "@components/icons/BorderView";
 
 interface SvgData {
     viewBox: { w: number; h: number };
@@ -10,29 +9,41 @@ interface SvgData {
 }
 
 const svgDefinitions: Record<string, SvgData> = {
-    bird: {
-        viewBox: { w: 81, h: 83 },
-        src: require("@assets/images/project/things/bird.svg"),
+    0: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-1.svg"),
     },
-    butterfly: {
-        viewBox: { w: 81, h: 69 },
-        src: require("@assets/images/project/things/butterfly.svg"),
+    1: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-2.svg"),
     },
-    cow: {
-        viewBox: { w: 126, h: 94 },
-        src: require("@assets/images/project/things/cow.svg"),
+    2: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-3.svg"),
     },
-    jellyfish: {
-        viewBox: { w: 105, h: 89 },
-        src: require("@assets/images/project/things/jellyfish.svg"),
+    3: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-4.svg"),
     },
-    plant: {
-        viewBox: { w: 107, h: 114 },
-        src: require("@assets/images/project/things/plant.svg"),
+    4: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-5.svg"),
     },
-    tree: {
-        viewBox: { w: 85, h: 110 },
-        src: require("@assets/images/project/things/tree.svg"),
+    5: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-6.svg"),
+    },
+    6: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-7.svg"),
+    },
+    7: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-8.svg"),
+    },
+    8: {
+        viewBox: { w: 113, h: 113 },
+        src: require("@assets/images/project/robot/robot-9.svg"),
     },
 };
 
@@ -42,7 +53,7 @@ interface IconProps extends ViewProps {
     size?: number;
 }
 
-export default function Things({
+export default function Robot({
     name,
     color = theme.colors.content,
     size = 24,
@@ -62,12 +73,10 @@ export default function Things({
                 {
                     width: size,
                     aspectRatio: svgData.viewBox.w / svgData.viewBox.h,
-                    padding: 8,
                 },
                 style,
             ]}
         >
-            <BorderView thickness={2} cornerLength={10} color={color} />
             <Image
                 source={svgData.src}
                 style={{ width: "100%", height: "100%" }}

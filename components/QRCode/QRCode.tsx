@@ -1,17 +1,54 @@
-import BorderView from "@components/icons/BorderView";
-import { CameraView, useCameraPermissions } from "expo-camera";
-import { Image } from "expo-image";
+import {
+    CameraView,
+    useCameraPermissions,
+    BarcodeScanningResult,
+} from "expo-camera";
+import io, { Socket } from "socket.io-client";
 import { useRef, useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+
+import { useSocket } from "@/context/Socket";
 
 import global from "@styles/global";
 import theme from "@theme";
 
 export function QRCode() {
     const [permission, requestPermission] = useCameraPermissions();
-    const cameraRef = useRef<CameraView>(null);
-    const [uri, setUri] = useState<string | null>(null);
 
+    /* const socket = useRef<Socket | null>(null); */
+    const { socket } = useSocket();
+    const cameraRef = useRef<CameraView>(null);
+
+    const [isConnected, setIsConnected] = useState(false);
+
+    /**s
+     * Camera QR code scanning handler
+     */
+    const handleScan = (result: BarcodeScanningResult) => {
+        const sessionId = result.data;
+        console.log("QR détecté :", sessionId);
+
+        socket.current = io(sessionId); // IP DU SERVEUR
+
+        socket.current.on("connect", () => {
+            console.log("✅ Mobile connecté");
+            socket.current?.emit("join-session", sessionId);
+            /* socket.current?.emit("message-from-mobile", {
+                text: "TIQUETONERAT",
+            }); */
+        });
+    };
+
+    const sendMessage = () => {
+        console.log("Envoi du message au serveur...");
+        /* socket.current?.emit("message-from-mobile", {
+            text: "TIQUETONERAT",
+        }); */
+    };
+
+    /**
+     * Handle camera permissions
+     */
     if (!permission) {
         // Camera permissions are still loading.
         return <View />;
@@ -29,25 +66,11 @@ export function QRCode() {
         );
     }
 
-    const takePicture = async () => {
-        const photo = await cameraRef.current?.takePictureAsync();
-        if (photo?.uri) {
-            setUri(photo.uri);
-        }
-    };
-
-    const renderPicture = (uri: string) => {
+    const renderPicture = () => {
+        sendMessage();
         return (
             <View style={styles.containerModal}>
-                <Image
-                    source={{ uri }}
-                    contentFit="contain"
-                    style={{ width: 300, aspectRatio: 1 }}
-                />
-                <Button
-                    onPress={() => setUri(null)}
-                    title="Take another picture"
-                />
+                <Text>Connecté</Text>
             </View>
         );
     };
@@ -55,26 +78,20 @@ export function QRCode() {
     const renderCamera = () => {
         return (
             <View style={styles.container}>
-                <BorderView
-                    thickness={2}
-                    cornerLength={40}
-                    extra={true}
-                    color={theme.colors.focus}
-                />
                 <CameraView
                     style={styles.camera}
                     ref={cameraRef}
-                    facing={"front"}
-                    mode={"picture"}
+                    facing={"back"}
+                    barcodeScannerSettings={{ barcodeTypes: ["qr"] }}
+                    onBarcodeScanned={handleScan}
                 />
-                <Button onPress={takePicture} title="Take picture" />
             </View>
         );
     };
 
     return (
         <View style={styles.container}>
-            {uri ? renderPicture(uri) : renderCamera()}
+            {isConnected ? renderPicture() : renderCamera()}
         </View>
     );
 }
@@ -83,7 +100,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: "100%",
-        padding: 10,
     },
     containerModal: {
         position: "absolute",
@@ -99,6 +115,5 @@ const styles = StyleSheet.create({
     },
     camera: {
         flex: 1,
-        zIndex: 0,
     },
 });

@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export function Header({ steps = 0 }: HeaderProps) {
     return (
-        <>
+        <View style={{}}>
             <BatteryId />
             <View style={styles.container}>
                 <View style={styles.contentLeft}>
@@ -24,7 +24,7 @@ export function Header({ steps = 0 }: HeaderProps) {
                     <Steps steps={steps} />
                 </View>
             </View>
-        </>
+        </View>
     );
 }
 

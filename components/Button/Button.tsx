@@ -2,33 +2,35 @@ import BorderButton from "@components/icons/BorderButton";
 import global from "@styles/global";
 import theme from "@theme";
 import { Pressable, StyleSheet, Text } from "react-native";
-import { useScenePoint } from "@/context/ScenePoints";
+import { useSocket } from "@/context/Socket";
 import { Href, useRouter } from "expo-router";
 
 interface ButtonProps {
     text?: string;
     navigateTo?: string;
-    incrementPoints?: number;
+    sceneTo?: string;
     customCallback?: () => void;
 }
 
 export function Button({
     text = "CONTINUER",
     navigateTo,
-    incrementPoints,
+    sceneTo,
     customCallback,
 }: ButtonProps) {
     const router = useRouter();
-
-    const { increment } = useScenePoint();
+    const { socket } = useSocket();
 
     const handlePress = () => {
-        if (incrementPoints) {
-            increment(incrementPoints);
-        }
-
         if (customCallback) {
             customCallback();
+        }
+
+        if (sceneTo) {
+            console.warn("sceneTo: ", sceneTo);
+            socket.current?.emit("message-from-mobile", {
+                text: { sceneTo },
+            });
         }
 
         if (navigateTo) {

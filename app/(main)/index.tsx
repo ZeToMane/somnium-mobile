@@ -1,16 +1,14 @@
 import { Camera } from "@/components/Camera";
 import { Header } from "@/components/Header";
 import { Status } from "@/components/Status";
-import { Username } from "@/components/Username";
 import { ProgressionCounter } from "@/components/ProgressionCounter";
 import Barcode from "@/components/icons/Barcode";
 import theme from "@theme";
 import { StyleSheet, View } from "react-native";
 import { Button } from "@/components/Button";
-import { useScenePoint } from "@/context/ScenePoints";
+import { QRCode } from "@/components/QRCode";
 
 export default function Index() {
-    const { increment } = useScenePoint();
     return (
         <View
             style={{
@@ -20,9 +18,9 @@ export default function Index() {
                 flexDirection: "column", */
             }}
         >
-            <Header />
+            {/* <Header />
             <Status />
-            <ProgressionCounter progression={1} />
+            <ProgressionCounter progression={1} /> */}
             {/* <Content
                 title={"Lorem Ipsum Morbi non sollicitudin"}
                 desc={
@@ -30,12 +28,16 @@ export default function Index() {
                 }
             />
             <Button /> */}
-            <View style={{ width: "100%", flex: 0.7 }}>
+            {/* <View style={{ width: "100%", flex: 0.7 }}>
                 <Camera />
             </View>
-            <Barcode style={{ width: "100%" }} />
+            <Barcode style={{ width: "100%" }} /> */}
             {/* <Username /> */}
-            <Button navigateTo="Orbits" />
+            <View style={{ width: "100%", flex: 0.7 }}>
+                <QRCode />
+            </View>
+
+            <Button navigateTo="See" />
             {/* <Text style={[styles.text, global.title, { flex: 0.3 }]}>
                 Edit app/index.tsx to edit this screen.
             </Text> */}

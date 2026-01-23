@@ -5,7 +5,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ProgressionProvider } from "@context/Progression";
-import { ScenePointsProvider } from "@context/ScenePoints";
+import { SceneProvider } from "@/context/Scene";
+import { SocketProvider } from "@context/Socket";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
@@ -31,17 +32,20 @@ export default function RootLayout() {
                 style={{ flex: 1, backgroundColor: theme.colors.background }}
             >
                 <ProgressionProvider>
-                    <ScenePointsProvider>
-                        <Stack
-                            screenOptions={{
-                                headerShown: false,
-                                animation: "none",
-                                contentStyle: {
-                                    backgroundColor: theme.colors.background,
-                                },
-                            }}
-                        />
-                    </ScenePointsProvider>
+                    <SceneProvider>
+                        <SocketProvider>
+                            <Stack
+                                screenOptions={{
+                                    headerShown: false,
+                                    animation: "none",
+                                    contentStyle: {
+                                        backgroundColor:
+                                            theme.colors.background,
+                                    },
+                                }}
+                            />
+                        </SocketProvider>
+                    </SceneProvider>
                 </ProgressionProvider>
             </SafeAreaView>
         </GestureHandlerRootView>

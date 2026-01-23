@@ -2,7 +2,6 @@ import theme from "@theme";
 import { View } from "react-native";
 import type { ViewProps } from "react-native";
 import { Image } from "expo-image";
-import BorderView from "@components/icons/BorderView";
 
 interface SvgData {
     viewBox: { w: number; h: number };
@@ -10,29 +9,17 @@ interface SvgData {
 }
 
 const svgDefinitions: Record<string, SvgData> = {
-    bird: {
-        viewBox: { w: 81, h: 83 },
-        src: require("@assets/images/project/things/bird.svg"),
+    firefly: {
+        viewBox: { w: 38, h: 38 },
+        src: require("@assets/images/project/kill/firefly.svg"),
     },
-    butterfly: {
-        viewBox: { w: 81, h: 69 },
-        src: require("@assets/images/project/things/butterfly.svg"),
+    fish: {
+        viewBox: { w: 49, h: 49 },
+        src: require("@assets/images/project/kill/fish.svg"),
     },
-    cow: {
-        viewBox: { w: 126, h: 94 },
-        src: require("@assets/images/project/things/cow.svg"),
-    },
-    jellyfish: {
-        viewBox: { w: 105, h: 89 },
-        src: require("@assets/images/project/things/jellyfish.svg"),
-    },
-    plant: {
-        viewBox: { w: 107, h: 114 },
-        src: require("@assets/images/project/things/plant.svg"),
-    },
-    tree: {
-        viewBox: { w: 85, h: 110 },
-        src: require("@assets/images/project/things/tree.svg"),
+    rat: {
+        viewBox: { w: 75, h: 24 },
+        src: require("@assets/images/project/kill/rat.svg"),
     },
 };
 
@@ -42,7 +29,7 @@ interface IconProps extends ViewProps {
     size?: number;
 }
 
-export default function Things({
+export default function Kill({
     name,
     color = theme.colors.content,
     size = 24,
@@ -62,12 +49,10 @@ export default function Things({
                 {
                     width: size,
                     aspectRatio: svgData.viewBox.w / svgData.viewBox.h,
-                    padding: 8,
                 },
                 style,
             ]}
         >
-            <BorderView thickness={2} cornerLength={10} color={color} />
             <Image
                 source={svgData.src}
                 style={{ width: "100%", height: "100%" }}
